@@ -6,65 +6,159 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="123dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Localizaçao"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintEnd_toStartOf="@+id/editText2"
-        app:layout_constraintHorizontal_bias="0.431"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
 
-    <EditText
-        android:id="@+id/txtNomeUsuario"
-        android:layout_width="128dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.72"
-        app:layout_constraintStart_toEndOf="@+id/editText2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="43dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Ola,"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/txtNomeUsuario"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="386dp"
-        android:layout_height="106dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+    <View
+        android:id="@+id/view4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#48A4E2A5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
-        app:layout_constraintVertical_bias="0.119"
-        app:srcCompat="@android:drawable/dialog_holo_light_frame" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ScrollView
+        android:layout_width="394dp"
+        android:layout_height="613dp"
+        android:layout_marginTop="95dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/view4"
+        app:layout_constraintStart_toStartOf="@+id/view4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.447">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="true"
+            android:addStatesFromChildren="true"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="184dp"
+                android:layout_height="36dp"
+                android:fontFamily="@font/lora_bolditalic"
+                android:gravity="center"
+                android:text="Pista de Skate"
+                android:textColor="#0F0F0F"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="184dp"
+                android:layout_height="36dp"
+                android:fontFamily="@font/lora_bolditalic"
+                android:gravity="center"
+                android:shadowColor="#00070707"
+                android:text="Pista de corrida"
+                android:textColor="#0F0F0F"
+                android:textSize="24sp" />
+
+            <CheckBox
+                android:id="@+id/checkAcademia"
+                android:layout_width="363dp"
+                android:layout_height="95dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp" />
+
+            <CheckBox
+                android:id="@+id/checkSkate"
+                android:layout_width="363dp"
+                android:layout_height="95dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="8dp" />
+
+            <CheckBox
+                android:id="@+id/checkCorrida"
+                android:layout_width="363dp"
+                android:layout_height="95dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="92dp"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="184dp"
+                android:layout_height="36dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/lora_bolditalic"
+                android:gravity="center"
+                android:text="Academia"
+                android:textColor="#0F0F0F"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="269dp"
+                android:layout_height="39dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/lora_bolditalic"
+                android:gravity="center"
+                android:text="Brinquedos P/Criança"
+                android:textColor="#0F0F0F"
+                android:textSize="24sp" />
+
+            <CheckBox
+                android:id="@+id/checkBrinquedos"
+                android:layout_width="363dp"
+                android:layout_height="95dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="72dp" />
+        </LinearLayout>
+
+
+
+
+    </ScrollView>
+
+
+    <TextView
+        android:id="@+id/txtNomeUsuario"
+        android:layout_width="222dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:textColor="#111111"
+        android:textSize="18sp"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
+        android:textSelectHandleRight="@id/txtNomeUsuario"
+        app:layout_constraintBottom_toTopOf="@+id/checkCorrida"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view4"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+
+    <SearchView
+        android:layout_width="53dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="24dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.976"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBrinquedos" />
+
 
 </android.support.constraint.ConstraintLayout>

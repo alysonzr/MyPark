@@ -1,15 +1,12 @@
 package com.example.mypark;
-
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.Toast;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -48,7 +45,11 @@ public class MainActivity extends AppCompatActivity {
                     if (res.equals("OK")) {
                         Toast.makeText(MainActivity.this, "Login OK", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                        Bundle p = new Bundle();
+                        p.putString("chave_nome", nome);
+                        i.putExtras(p);
                         startActivity(i);
+
                     } else {
                         Toast.makeText(MainActivity.this, "Login Incorreto!", Toast.LENGTH_SHORT).show();
 
@@ -91,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }*/
+
+
 }
 
 
