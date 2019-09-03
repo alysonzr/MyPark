@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         btnRegistrar = (Button) findViewById(R.id.btnRegistrar);
 
 
+
         btnLogar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
