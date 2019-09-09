@@ -8,8 +8,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-
-
 public class RegisterActivity extends AppCompatActivity {
 
     EditText txtNomeRegistro,txtEmailRegistro,txtSenhaRegistro;

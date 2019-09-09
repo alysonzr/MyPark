@@ -32,7 +32,7 @@
         <ScrollView
             android:id="@+id/scrollView2"
             android:layout_width="400dp"
-            android:layout_height="626dp"
+            android:layout_height="0dp"
             android:layout_weight="1"
             android:fillViewport="true"
             app:layout_constraintBottom_toBottomOf="@+id/view4"
@@ -63,7 +63,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <CheckBox
-                    android:id="@+id/checkAcademia"
+                    android:id="@+id/checkBike"
                     android:layout_width="wrap_content"
                     android:layout_height="95dp"
                     android:layout_marginStart="23dp"
@@ -76,6 +76,7 @@
                     android:textSize="24sp" />
 
                 <CheckBox
+                    android:id="@+id/checkCorrida"
                     android:layout_width="wrap_content"
                     android:layout_height="95dp"
                     android:layout_marginStart="23dp"
@@ -127,6 +128,20 @@
                     android:text="Espaço para pinic"
                     android:textAlignment="center"
                     android:textSize="24sp" />
+
+                <CheckBox
+                    android:id="@+id/checkAcademia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="95dp"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="35dp"
+                    android:background="@drawable/academia"
+                    android:fontFamily="@font/lora_bolditalic"
+                    android:text="Academia ao ar livre"
+                    android:textAlignment="center"
+                    android:textSize="24sp" />
+
 
 
             </LinearLayout>
