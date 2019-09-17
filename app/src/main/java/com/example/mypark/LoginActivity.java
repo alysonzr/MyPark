@@ -41,8 +41,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(checkAcademia.isChecked() || checkBike.isChecked() || checkCorrida.isChecked() ){
-                    Intent i = new Intent(LoginActivity.this,TelaMaps.class);
-                    startActivity(i);
+                   // Intent i = new Intent(LoginActivity.this,MapsActivity.class);
+                   // startActivity(i);
                 }
 
 
