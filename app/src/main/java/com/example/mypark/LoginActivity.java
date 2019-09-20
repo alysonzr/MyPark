@@ -14,7 +14,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     Button btnPesquisar;
-    CheckBox checkAcademia,checkDog,checkSkate,checkPicnic,checkBike,checkCorrida;
+    CheckBox checkAcademia,checkDog,checkSkate,checkAreaCrianca,checkBike,checkCorrida;
 
 
     @Override
@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
         btnPesquisar = (Button)findViewById(R.id.btnPesquisar);
 
         checkBike = (CheckBox) findViewById(R.id.checkBike);
-        checkPicnic = (CheckBox) findViewById(R.id.checkPicnic);
+        checkAreaCrianca = (CheckBox) findViewById(R.id.checkAreaInfantil);
         checkCorrida = (CheckBox)findViewById(R.id.checkCorrida);
         checkAcademia = (CheckBox)findViewById(R.id.checkAcademia);
         checkDog = (CheckBox)findViewById(R.id.checkDog);
@@ -40,9 +40,22 @@ public class LoginActivity extends AppCompatActivity {
         btnPesquisar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(checkAcademia.isChecked() || checkBike.isChecked() || checkCorrida.isChecked() ){
-                   // Intent i = new Intent(LoginActivity.this,MapsActivity.class);
-                   // startActivity(i);
+                if(!checkBike.isChecked() && !checkAreaCrianca.isChecked() && !checkCorrida.isChecked() && !checkAcademia.isChecked() &&  !checkDog.isChecked() && !checkSkate.isChecked() ){
+                    Intent i = new Intent(LoginActivity.this,DetalhesActivity.class);
+                    Bundle p = new Bundle();
+                    String facilits = "";
+                    p.putString("chave", facilits);
+                    i.putExtras(p);
+                    startActivity(i);
+                }
+
+                if(checkAreaCrianca.isChecked() ||  checkCorrida.isChecked() || checkAcademia.isChecked() || checkCorrida.isChecked() || checkSkate.isChecked() ){
+                    Intent i = new Intent(LoginActivity.this,MapsActivity.class);
+                    Bundle p = new Bundle();
+                    String facilits = "areaCrianca_pistaCorrida_academia_corrida_skate";
+                    p.putString("chave", facilits);
+                    i.putExtras(p);
+                    startActivity(i);
                 }
 
 

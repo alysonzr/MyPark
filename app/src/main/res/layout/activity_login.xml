@@ -117,7 +117,7 @@
                     android:textSize="24sp" />
 
                 <CheckBox
-                    android:id="@+id/checkPicnic"
+                    android:id="@+id/checkAreaInfantil"
                     android:layout_width="wrap_content"
                     android:layout_height="95dp"
                     android:layout_marginStart="23dp"
@@ -125,7 +125,7 @@
                     android:layout_marginEnd="35dp"
                     android:background="@drawable/picnic"
                     android:fontFamily="@font/lora_bolditalic"
-                    android:text="Espaço para pinic"
+                    android:text="Area infantil"
                     android:textAlignment="center"
                     android:textSize="24sp" />
 
