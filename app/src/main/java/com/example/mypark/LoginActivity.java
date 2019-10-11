@@ -49,10 +49,18 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(i);
                 }
 
-                if(checkAreaCrianca.isChecked() ||  checkCorrida.isChecked() || checkAcademia.isChecked() || checkCorrida.isChecked() || checkSkate.isChecked() ){
-                    Intent i = new Intent(LoginActivity.this,MapsActivity.class);
+                if(checkSkate.isChecked()){
+                    Intent i = new Intent(LoginActivity.this,DetalhesPracasActivity.class);
                     Bundle p = new Bundle();
-                    String facilits = "areaCrianca_pistaCorrida_academia_corrida_skate";
+                    String facilits = "skate";
+                    p.putString("chave", facilits);
+                    i.putExtras(p);
+                    startActivity(i);
+                }
+                if(checkAreaCrianca.isChecked()){
+                    Intent i = new Intent(LoginActivity.this,DetalhesPracasActivity.class);
+                    Bundle p = new Bundle();
+                    String facilits = "AreaCrianca";
                     p.putString("chave", facilits);
                     i.putExtras(p);
                     startActivity(i);

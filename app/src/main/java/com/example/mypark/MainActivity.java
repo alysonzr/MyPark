@@ -6,21 +6,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
+
 import android.widget.Toast;
 
 
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends AppCompatActivity
+        {
 
 
     EditText txtNome, txtSenha;
     Button btnLogar, btnRegistrar;
     BDHelper bd;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+
         bd = new BDHelper(this);
 
         txtNome = (EditText) findViewById(R.id.txtNome);
@@ -71,31 +80,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //Verificando se o google play service esta ok
-    /*@Override
-    protected void onResume() {
-        super.onResume();
-        int erroCode = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this);
-        switch (erroCode){
-            case ConnectionResult.SERVICE_MISSING:
-            case ConnectionResult.SERVICE_VERSION_UPDATE_REQUIRED:
-                case ConnectionResult.SERVICE_DISABLED:
-                    Log.d("Teste","show dialog");
-                    GoogleApiAvailability.getInstance().getErrorDialog(this, erroCode,
-                            0, new DialogInterface.OnCancelListener() {
-                        @Override
-                        public void onCancel(DialogInterface dialogInterface) {
-                            finish();
-                        }
-                    }).show();
-                    break;
-                    case  ConnectionResult.SUCCESS:
-                        Log.d("Teste", "Google Play Services up-to-date");
-
-        }
-    }*/
-
-
 }
+
+
 
 
