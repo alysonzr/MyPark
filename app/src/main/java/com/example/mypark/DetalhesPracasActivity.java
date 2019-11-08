@@ -2,19 +2,40 @@ package com.example.mypark;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.XmlResourceParser;
 import android.location.Location;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.util.ArrayMap;
 import android.util.Log;
-import android.widget.ImageButton;
 import java.lang.Math;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.mypark.DataBase.PesquisaBD;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 
 public class DetalhesPracasActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
@@ -22,49 +43,109 @@ public class DetalhesPracasActivity extends AppCompatActivity implements GoogleA
 
     private Location location;
 
- private Double latitudeUsuario;
- private Double longitudeUsuario;
- private Double result;
+    private Double latitudeUsuario;
+    private Double longitudeUsuario;
+    private Double result;
 
-    private  GoogleApiClient mGoogleApiClient;
-
-
+    private GoogleApiClient mGoogleApiClient;
+    ArrayList<Praca> pracas = new ArrayList();
+    TextView textView2;
+    FirebaseFirestore fireStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhes_pracas);
+        fireStore = FirebaseFirestore.getInstance();
+        callConnection();
 
+        final ListView lista = (ListView) findViewById(R.id.idLista);
 
-         callConnection();
-
-
-        TextView textviewSkat1 = (TextView) findViewById(R.id.textviewSkat1);
-        TextView textviewSkat2 = (TextView) findViewById(R.id.textviewSkat2);
+        textView2 = findViewById(R.id.textView2);
 
         Intent i = getIntent();
-        Bundle p = i.getExtras();
-        String facilits = p.getString("chave");
+        Boolean Skate = i.getBooleanExtra("skatee", false);
+        Boolean areaCri = i.getBooleanExtra("AreaCrianca", false);
+        Boolean corrida = i.getBooleanExtra("Corrida", false);
 
 
-        ConverteLatitude(latitudeUsuario,longitudeUsuario,"-29.926859","-51.039984");
+        //ConverteLatitude(latitudeUsuario, longitudeUsuario, "-29.926859", "-51.039984");
 
-        if (facilits.equals("skate")) {
+        if (Skate) {
+            Integer skate = 0;
+            PegaDados("Skate");
+            String n = pracas.get(1).getNome();
+            String[] strings = new String[5];
+          int cont = 0;
+            for(Praca p : pracas){
+                strings[cont] = p.getNome();
+                cont++;
+            }
 
-            textviewSkat1.setText("Praça do Tuiuti e Skate Park"+ getResult());
-
-            textviewSkat2.setText("Praça velha morada do vale 1");
-
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,strings);
+            lista.setAdapter(adapter);
         }
 
-        if (facilits.equals("AreaCrianca")) {
-            textviewSkat1.setText("Praça Morada do vale 3");
+        if (areaCri) {
 
-            textviewSkat2.setText("Praça velha morada do vale 1");
         }
 
 
     }
+
+    private List PegaDados(String skate) {
+        fireStore.collection("Parks").document("PracasGravatai").collection(skate).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        String uid = document.getId();
+                        String nome = document.getString("Nome");
+                        String endereco = document.getString("Endereco");
+                        String facilidades = document.getString("Facilidades");
+
+                        pracas.add(new Praca(uid,nome,endereco,facilidades));
+
+                    }
+                }
+            }
+        });
+        return pracas;
+    }
+
+/*    Query query1 = raiz.child("Parks").getDatabase().getReference();
+            query1.addListenerForSingleValueEvent(new ValueEventListener() {
+@Override
+public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        if(dataSnapshot.exists()) {
+        String endereco = dataSnapshot.g
+        textView.setText(p.setEndereco());
+
+
+        }
+        }*/
+
+    private void consultaDados() {
+
+    }
+
+   /* public void obtendoDados(){
+        fireStore.collection("Parks").document().get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if(documentSnapshot.exists()) {
+                    String endereco = documentSnapshot.getString("Endereco");
+                    List<Map> facilidades = (List<Map>) documentSnapshot.get("Facilidades");
+                    String nome = documentSnapshot.getString("Nome");
+                    textView.setText("Nome: "+nome+ "Facilidades"+facilidades+"Endereço: "+endereco);
+
+                }
+
+            }
+        });
+    }*/
+
+
 
     private synchronized void callConnection() {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -99,9 +180,10 @@ public class DetalhesPracasActivity extends AppCompatActivity implements GoogleA
     public void onConnectionSuspended(int i) {
         Log.i("LOG", "onConnectionSuspended(" + i + ")");
     }
+
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-        Log.i("LOG", "onConnectionFailed("+connectionResult+")");
+        Log.i("LOG", "onConnectionFailed(" + connectionResult + ")");
     }
 
     public void ConverteLatitude(Double latitude1, Double logitude1, String latitude2, String logitude2) {
@@ -151,7 +233,3 @@ public class DetalhesPracasActivity extends AppCompatActivity implements GoogleA
         this.result = result;
     }
 }
-
-
-
-

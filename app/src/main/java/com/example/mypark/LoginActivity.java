@@ -2,11 +2,22 @@ package com.example.mypark;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 //PAGINA INICIAL APOS USUARIO LOGAR
@@ -17,10 +28,13 @@ public class LoginActivity extends AppCompatActivity {
     CheckBox checkAcademia,checkDog,checkSkate,checkAreaCrianca,checkBike,checkCorrida;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         btnPesquisar = (Button)findViewById(R.id.btnPesquisar);
 
@@ -37,36 +51,36 @@ public class LoginActivity extends AppCompatActivity {
         String nome = p.getString("chave_nome");
         setTitle("Bem Vindo, " + nome);
 
+
+
         btnPesquisar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String facilits = "";
+                Intent i = new Intent(LoginActivity.this, DetalhesPracasActivity.class);
                 if(!checkBike.isChecked() && !checkAreaCrianca.isChecked() && !checkCorrida.isChecked() && !checkAcademia.isChecked() &&  !checkDog.isChecked() && !checkSkate.isChecked() ){
-                    Intent i = new Intent(LoginActivity.this,DetalhesActivity.class);
-                    Bundle p = new Bundle();
-                    String facilits = "";
-                    p.putString("chave", facilits);
-                    i.putExtras(p);
-                    startActivity(i);
+                    i = new Intent(LoginActivity.this,DetalhesPracasActivity.class);
+
                 }
 
                 if(checkSkate.isChecked()){
-                    Intent i = new Intent(LoginActivity.this,DetalhesPracasActivity.class);
-                    Bundle p = new Bundle();
-                    String facilits = "skate";
-                    p.putString("chave", facilits);
-                    i.putExtras(p);
-                    startActivity(i);
+                    facilits = "skatee";
+
+                    i.putExtra(facilits, true);
+
                 }
                 if(checkAreaCrianca.isChecked()){
-                    Intent i = new Intent(LoginActivity.this,DetalhesPracasActivity.class);
-                    Bundle p = new Bundle();
-                    String facilits = "AreaCrianca";
-                    p.putString("chave", facilits);
-                    i.putExtras(p);
-                    startActivity(i);
+                    facilits = "AreaCrianca";
+                    i.putExtra(facilits, true);
+                }
+                if(checkCorrida.isChecked()){
+                    facilits = "Corrida";
+                    i.putExtra(facilits, true);
                 }
 
 
+
+                startActivity(i);
             }
 
 
@@ -74,8 +88,5 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    }
 
-
-
-
+}
